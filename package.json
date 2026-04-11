@@ -1,0 +1,39 @@
+{
+  "name": "autostack-ai",
+  "version": "1.0.0",
+  "description": "One command. Full AI-powered dev stack.",
+  "type": "module",
+  "bin": {
+    "autostack-ai": "./dist/cli/index.js"
+  },
+  "main": "./dist/core/engine/engine.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/cli/index.js",
+    "link": "pnpm build && pnpm link --global"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^12.0.0",
+    "dotenv": "^16.4.5",
+    "fs-extra": "^11.2.0",
+    "inquirer": "^9.2.20",
+    "openai": "^4.47.1"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/inquirer": "^9.0.7",
+    "@types/node": "^20.12.7",
+    "typescript": "^5.4.5"
+  },
+  "keywords": [
+    "ai",
+    "cli",
+    "developer-tools",
+    "automation",
+    "code-generation"
+  ],
+  "author": "SudarshanTechLabs",
+  "license": "MIT"
+}

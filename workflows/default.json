@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "name": "default",
+  "description": "Standard AutoStack AI init workflow",
+  "trigger": "manual",
+  "steps": [
+    {
+      "id": "detect_stack",
+      "action": "detect",
+      "description": "Detect project tech stack"
+    },
+    {
+      "id": "install_skills",
+      "action": "install",
+      "description": "Install matching AI skills",
+      "depends_on": ["detect_stack"]
+    },
+    {
+      "id": "write_config",
+      "action": "config",
+      "description": "Write .ai/config.json",
+      "depends_on": ["install_skills"]
+    }
+  ]
+}
