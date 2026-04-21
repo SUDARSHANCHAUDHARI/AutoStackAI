@@ -4,3 +4,4 @@ dist/
 *.backup
 .DS_Store
 *.js.map
+PLAN.md
