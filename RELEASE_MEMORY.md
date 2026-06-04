@@ -48,3 +48,4 @@ Local CLI package release. Public npm publish should wait for package-name/versi
 - `pnpm exec autostack-ai fix` failed gracefully without `OPENAI_API_KEY`.
 - `pnpm build` passed after replacing key-looking placeholders with `YOUR_*` values.
 - `pnpm pack` passed again after placeholder cleanup.
+- Polished README with local CLI release status, technical decisions, package release notes, known limits, and author section.
