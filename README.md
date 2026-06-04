@@ -4,25 +4,40 @@
 
 AutoStack AI automatically detects your project's tech stack and installs AI agents, code generation skills, and workflows — instantly.
 
-## Install
+## Local Install
+
+```bash
+pnpm install
+pnpm build
+pnpm link --global
+autostack-ai init
+```
+
+For a tarball smoke test before publishing:
+
+```bash
+pnpm pack
+mkdir -p /tmp/autostack-smoke
+cd /tmp/autostack-smoke
+pnpm add /path/to/AutoStackAI/autostack-ai-1.0.0.tgz
+pnpm exec autostack-ai init
+```
+
+After public package publishing, the install path becomes:
 
 ```bash
 pnpm dlx autostack-ai init
 ```
 
-Or install globally:
-
-```bash
-pnpm add -g autostack-ai
-```
-
 ## Setup
 
-Copy `.env.example` to `.env` and add your OpenAI key:
+`init` does not require an OpenAI key. AI generation, fix, and dev-watch commands require `OPENAI_API_KEY`.
+
+Copy `.env.example` to `.env` when using AI commands:
 
 ```bash
 cp .env.example .env
-# Edit .env and add: OPENAI_API_KEY=sk-...
+# Edit .env and add: OPENAI_API_KEY=YOUR_OPENAI_API_KEY
 ```
 
 ## Commands
@@ -63,6 +78,18 @@ pnpm link --global
 
 autostack-ai init
 ```
+
+## Release Status
+
+The local package release path has been verified with:
+
+- `pnpm build`
+- `pnpm pack`
+- clean tarball install
+- `autostack-ai --help`
+- `autostack-ai init` on React, Express, and package-smoke fixtures
+
+Do not publish to npm until the package name, version, and release notes are confirmed.
 
 ## Author
 

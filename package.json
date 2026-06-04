@@ -7,11 +7,20 @@
     "autostack-ai": "./dist/cli/index.js"
   },
   "main": "./dist/core/engine/engine.js",
+  "files": [
+    "dist",
+    "skills",
+    "workflows",
+    ".env.example",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
     "start": "node dist/cli/index.js",
-    "link": "pnpm build && pnpm link --global"
+    "link": "pnpm build && pnpm link --global",
+    "prepack": "pnpm build"
   },
   "dependencies": {
     "chalk": "^5.3.0",
