@@ -2,6 +2,7 @@ node_modules/
 dist/
 .env
 *.backup
+*.tgz
 .DS_Store
 *.js.map
 PLAN.md
