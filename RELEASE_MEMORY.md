@@ -41,7 +41,7 @@ Local CLI package release. Public npm publish should wait for package-name/versi
 - `node dist/cli/index.js init` passed in `/private/tmp/autostack-fixtures/react-app`.
 - `node dist/cli/index.js init` passed in `/private/tmp/autostack-fixtures/node-app`.
 - `pnpm pack` passed after adding a package allowlist and `prepack` build hook.
-- `pnpm add /Users/screencloudsudarshan/SUDARSHAN_CODE/sudarshan_repos/CLIProjects/AutoStackAI/autostack-ai-1.0.0.tgz` passed in `/private/tmp/autostack-package-smoke`.
+- `pnpm add /path/to/AutoStackAI/autostack-ai-1.0.0.tgz` passed in `/private/tmp/autostack-package-smoke`.
 - `pnpm exec autostack-ai --help` passed in the package-smoke fixture.
 - `pnpm exec autostack-ai init` passed in the package-smoke fixture.
 - `pnpm exec autostack-ai build "hello world"` failed gracefully without `OPENAI_API_KEY`.
