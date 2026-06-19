@@ -147,10 +147,6 @@ Before public npm publishing, confirm:
 - `fix --apply` can modify project files and should be used carefully.
 - AI generation is OpenAI-only in the current release path.
 
-## Author
-
-Built by **Sudarshan Chaudhari** — SudarshanTechLabs.
-
 ## Release Status
 
 The local package release path has been verified with:
@@ -165,7 +161,9 @@ Do not publish to npm until the package name, version, and release notes are con
 
 ## Author
 
-SudarshanTechLabs — [sudarshantechlabs@gmail.com](mailto:sudarshantechlabs@gmail.com)
+Built by **[Sudarshan Chaudhari](https://github.com/SUDARSHANCHAUDHARI)** — SudarshanTechLabs.
+
+Contact: [sudarshantechlabs@gmail.com](mailto:sudarshantechlabs@gmail.com)
 
 ## License
 
