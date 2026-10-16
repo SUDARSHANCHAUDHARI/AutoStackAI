@@ -44,5 +44,6 @@
     "code-generation"
   ],
   "author": "SudarshanTechLabs",
-  "license": "MIT"
+  "license": "MIT",
+  "packageManager": "pnpm@10.28.2"
 }
