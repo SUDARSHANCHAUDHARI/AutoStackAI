@@ -27,7 +27,8 @@ export async function detectStack(): Promise<StackInfo> {
   // Python project
   if (fs.existsSync(requirementsTxt)) {
     language = "python";
-    const reqs = fs.readFileSync(requirementsTxt, "utf-8");
+    // pip package names are case-insensitive ("Django==4.2")
+    const reqs = fs.readFileSync(requirementsTxt, "utf-8").toLowerCase();
     if (reqs.includes("django")) framework = "django";
     else if (reqs.includes("flask")) framework = "flask";
     else if (reqs.includes("fastapi")) framework = "fastapi";

@@ -97,13 +97,22 @@ Return ONLY valid JSON. No explanation.`;
 
   const result = await generateCode(userPrompt, { systemPrompt, model: "gpt-4o-mini", temperature: 0.1 });
 
+  let parsed: unknown;
   try {
-    JSON.parse(result);
-    return result;
+    parsed = JSON.parse(result);
   } catch {
     // Wrap in array if raw text returned
     return JSON.stringify([{ line: null, severity: "suggestion", message: result, fix: "" }]);
   }
+
+  if (Array.isArray(parsed)) return result;
+
+  // Models sometimes wrap the array: {"issues": [...]}
+  const wrapped = (parsed as { issues?: unknown } | null)?.issues;
+  if (Array.isArray(wrapped)) return JSON.stringify(wrapped);
+
+  // Any other JSON shape must not read as "no issues" to callers
+  throw new Error(`Unexpected analysis reply, expected a JSON array: ${result.slice(0, 200)}`);
 }
 
 export async function suggestFix(
