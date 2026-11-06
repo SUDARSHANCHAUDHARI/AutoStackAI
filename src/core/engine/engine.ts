@@ -109,11 +109,12 @@ Requirements:
 }
 
 function getFileExtension(framework: string, language: string): string {
-  if (framework === "flutter" || framework === "android") return ".dart";
+  if (framework === "flutter") return ".dart";
+  if (framework === "android") return ".kt";
+  if (["vue", "nuxt"].includes(framework)) return ".vue";
+  if (["svelte", "sveltekit"].includes(framework)) return ".svelte";
   if (language === "typescript") {
     if (["react", "nextjs", "gatsby", "remix"].includes(framework)) return ".tsx";
-    if (["vue", "nuxt"].includes(framework)) return ".vue";
-    if (["svelte", "sveltekit"].includes(framework)) return ".svelte";
     return ".ts";
   }
   if (language === "python") return ".py";
@@ -132,5 +133,6 @@ async function appendBuildLog(cwd: string, feature: string, outputFile: string):
 
   log.push({ feature, output: outputFile, timestamp: new Date().toISOString() });
 
-  await fs.writeJson(logPath, log, { spaces: 2 });
+  // outputJson creates .ai/ when `build` runs before `init`
+  await fs.outputJson(logPath, log, { spaces: 2 });
 }

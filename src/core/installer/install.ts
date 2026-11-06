@@ -31,7 +31,8 @@ const FRAMEWORK_SKILL_MAP: Record<string, string[]> = {
   unknown: ["api-agent"],
 };
 
-export async function installSkills(stack: StackInfo): Promise<void> {
+// Returns false if any requested skill was not found.
+export async function installSkills(stack: StackInfo): Promise<boolean> {
   const cwd = process.cwd();
   const aiDir = path.join(cwd, ".ai");
 
@@ -45,14 +46,14 @@ export async function installSkills(stack: StackInfo): Promise<void> {
   await fs.writeJson(path.join(aiDir, "stack.json"), stack, { spaces: 2 });
 
   if (stack.manual) {
-    await installSkill(stack.manual, aiDir);
-    return;
+    return installSkill(stack.manual, aiDir);
   }
 
   const skillsToInstall = FRAMEWORK_SKILL_MAP[stack.framework] ?? ["api-agent"];
+  let allFound = true;
 
   for (const skillName of skillsToInstall) {
-    await installSkill(skillName, aiDir);
+    if (!await installSkill(skillName, aiDir)) allFound = false;
   }
 
   // Install default workflow
@@ -63,19 +64,21 @@ export async function installSkills(stack: StackInfo): Promise<void> {
 
   console.log(chalk.green(`\n✅ Installed ${skillsToInstall.length} skill(s) for ${stack.framework}`));
   console.log(chalk.gray(`   Location: ${aiDir}\n`));
+  return allFound;
 }
 
-async function installSkill(skillName: string, aiDir: string): Promise<void> {
+async function installSkill(skillName: string, aiDir: string): Promise<boolean> {
   const skillSrc = path.join(SKILLS_DIR, skillName);
   const skillDest = path.join(aiDir, "skills", skillName);
 
   if (!await fs.pathExists(skillSrc)) {
     console.log(chalk.yellow(`⚠️  Skill "${skillName}" not found, skipping.`));
-    return;
+    return false;
   }
 
   await fs.copy(skillSrc, skillDest, { overwrite: true });
   console.log(chalk.green(`   ✓ ${skillName}`));
+  return true;
 }
 
 async function installWorkflow(workflowName: string, aiDir: string): Promise<void> {

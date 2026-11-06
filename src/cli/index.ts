@@ -46,7 +46,11 @@ program
   .action(async (skill: string) => {
     try {
       console.log(chalk.yellow(`📦 Installing skill: ${skill}...`));
-      await installSkills({ manual: skill, framework: "unknown", language: "unknown", styling: "unknown", backend: "none", database: "none" });
+      const installed = await installSkills({ manual: skill, framework: "unknown", language: "unknown", styling: "unknown", backend: "none", database: "none" });
+      if (!installed) {
+        console.error(chalk.red(`❌ Install failed: skill "${skill}" not found.`));
+        process.exit(1);
+      }
       console.log(chalk.green(`✅ Skill "${skill}" installed.`));
     } catch (error) {
       console.error(chalk.red("❌ Install failed:"), error);
